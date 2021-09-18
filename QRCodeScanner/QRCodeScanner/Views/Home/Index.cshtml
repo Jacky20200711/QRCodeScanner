@@ -1,8 +1,52 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿<script src="~/js/webcam.js"></script>
+
+@{
+    string width = "520px";
+    string height = "350px";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .my_camera{
+        width: @width;
+        height: @height;
+        position:relative;
+        left:50%;
+        margin-left: -260px;
+        border:1px solid black;
+    }
+    .my_link {
+        width: 100px;
+        height: 50px;
+        position: relative;
+        left: 50%;
+        margin-left: -50px;
+        top: 10px;
+    }
+</style>
+
+<div>
+    <!-- 這個DIV用來裝載視訊影像 -->
+    <div id="my_camera" class="my_camera"></div>
 </div>
+
+<script language="JavaScript">
+    Webcam.attach('#my_camera');
+    function call_snapshot(delaySecond) {
+        setTimeout("take_snapshot();", delaySecond * 1000);
+    }
+    function take_snapshot(){
+        Webcam.snap(function (data_uri) {
+            // POST 截圖到後端
+            $.ajax({
+                type: "Post",
+                url: "@ViewBag.DecodeUrl",
+                data: { base64Str: data_uri }
+            })
+            .done(function (message) {
+                alert(message);
+            });
+        });
+    }
+</script>
+
+<a href="javascript:void(call_snapshot(0))" class="my_link">截圖並傳送</a>

@@ -4,3 +4,7 @@ release/
 obj/
 bin/
 
+QRCodeScanner/QRCodeScanner/QRCodeScanner.csproj.user
+QRCodeScanner/QRCodeScanner/.config/dotnet-tools.json
+QRCodeScanner/QRCodeScanner/Properties/PublishProfiles/FolderProfile.pubxml
+QRCodeScanner/QRCodeScanner/Properties/PublishProfiles/FolderProfile.pubxml.user

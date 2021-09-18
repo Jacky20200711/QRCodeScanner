@@ -1,10 +1,10 @@
 # 專案目標  
-藉由實作條碼的掃描器，來練習簡單的影像處理。  
+練習簡單的影像處理 & 實作條碼的掃描器  
 &emsp;  
 # 使用技術  
-1.  
-2.  
-3.  
+1.使用 ZXing.Net 解析條碼  
+2.使用 System.Drawing.Common 處理圖片亮度  
+3.使用 webcamjs 開啟視訊鏡頭並截圖  
 &emsp;  
 # 開發環境  
 Win10(家用版) + Visual Studio 2019 + .NET Core 3.1 MVC  
@@ -15,3 +15,11 @@ Install-Package ZXing.Net -Version 0.16.6
 Install-Package ZXing.Net.Bindings.ZKWeb.System.Drawing -Version 0.16.5  
 Install-Package System.Drawing.Common -Version 5.0.2  
 &emsp;  
+# 首頁  
+![image](https://github.com/Jacky20200711/QRCodeScanner/blob/master/DEMO_01.PNG?raw=true)  
+# 測試方式  
+1.開啟電腦相機的存取權限(以 Win10 為範例)  
+> 開始上右鍵 > 設定 > 隱私權 > 相機 > 開啟權限  
+&emsp;  
+2.運行網站後，相機照到的內容會顯示在首頁的框框裡  
+> 點選[截圖並傳送]後，會在首頁跳出 alert 訊息框並顯示解碼後的內容  
