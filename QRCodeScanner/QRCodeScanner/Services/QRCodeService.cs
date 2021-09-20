@@ -31,7 +31,7 @@ namespace QRCodeScanner.Services
                 // 如果解碼失敗，增加圖片亮度並重新再試一次
                 if(result == null)
                 {
-                    barcodeBitmap = SetImageLight(barcodeBitmap, 60);
+                    barcodeBitmap = SetImageLight(barcodeBitmap, 30);
                     result = reader.Decode(barcodeBitmap);
                 }
 
