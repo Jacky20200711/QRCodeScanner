@@ -1,53 +1,81 @@
-﻿<script src="~/js/webcam.js"></script>
+﻿<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="~/js/webcam.js"></script>
 
 @{
-    string width = "520px";
-    string height = "350px";
+    Layout = null;
+    string cameraWidth = "520px";
+    string cameraHeigh = "350px";
+    string descriptionWidth = "520px";
+    string descriptionHeigh = "50px";
 }
 
 <style>
-    .my_camera{
-        width: @width;
-        height: @height;
+    .my_description{
+        width: @descriptionWidth;
+        height: @descriptionHeigh;
         position:relative;
         left:50%;
         margin-left: -260px;
-        margin-top: 60px;
-        border:1px solid black;
+        text-align:center;
+        font-size:24px;
+        margin-top: 20px;
     }
-    .my_link {
+    .my_camera{
+        width: @cameraWidth;
+        height: @cameraHeigh;
+        position:relative;
+        left:50%;
+        margin-left: -260px;
+    }
+    .my_button {
         width: 100px;
-        height: 50px;
+        height: 30px;
         position: relative;
         left: 50%;
         margin-left: -50px;
-        top: 10px;
+        top: 20px;
+        cursor: pointer;
+    }
+    .my_result {
+        width: 100%;
+        height: @descriptionHeigh;
+        position:relative;
+        text-align:center;
+        font-size:20px;
+        margin-top: 40px;
     }
 </style>
 
 <div>
-    <!-- 這個DIV用來裝載視訊影像 -->
-    <div id="my_camera" class="my_camera"></div>
+    <div class="my_description">
+        點選{開始偵測}，並令您的條碼入鏡頭
+    </div>
+    <div id="my_camera" class="my_camera">
+
+    </div>
+    <button onclick="call_snapshot(500)" class="my_button">開始偵測</button>
+    <input class="my_result" id="result" placeholder="如果解析成功，會將結果顯示在這" />
 </div>
 
 <script language="JavaScript">
     Webcam.attach('#my_camera');
-    function call_snapshot(delaySecond) {
-        setTimeout("take_snapshot();", delaySecond * 1000);
+    function call_snapshot(interval) {
+        // 不斷觸發截圖並送到後端分析
+        setInterval("take_snapshot();", interval);
     }
     function take_snapshot(){
         Webcam.snap(function (data_uri) {
             // POST 截圖到後端
             $.ajax({
                 type: "Post",
-                url: "@ViewBag.DecodeUrl",
+                url: "@Url.Action("QRDecoder","Home")",
                 data: { base64Str: data_uri }
             })
-            .done(function (message) {
-                alert(message);
+            .done(function (result) {
+                if(result != "解碼失敗"){
+                    document.getElementById("result").value = result;
+                }
             });
         });
     }
 </script>
-
-<a href="javascript:void(call_snapshot(0))" class="my_link">截圖並傳送</a>
