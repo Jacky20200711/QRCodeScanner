@@ -3,8 +3,8 @@
 &emsp;  
 # 使用技術  
 1.使用 ZXing.Net 解析 QRCode  
-2.使用 System.Drawing.Common 調整圖片亮度  
-3.使用 webcamjs 開啟視訊鏡頭並截圖  
+2.使用 webcamjs 開啟視訊鏡頭並截圖  
+3.使用 AJAX 持續將截圖送到後端分析  
 &emsp;  
 # 開發環境  
 Win10(家用版) + Visual Studio 2019 + .NET Core 3.1 MVC  
@@ -21,5 +21,5 @@ Install-Package System.Drawing.Common -Version 5.0.2
 1.開啟電腦相機的存取權限(以 Win10 為範例)  
 開始上右鍵 > 設定 > 隱私權 > 相機 > 開啟權限  
 &emsp;  
-2.運行網站後，相機照到的內容會顯示在首頁的框框裡  
-讓 QRCode 入鏡後 > 點選[截圖並傳送] > 會跳出 alert 訊息框並顯示解碼後的內容  
+2.運行網站後，鏡頭照到的內容會顯示在框框裡，讓您的條碼入鏡即可  
+※可以解析常見的一維或二維條碼  
