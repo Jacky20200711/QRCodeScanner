@@ -10,14 +10,13 @@
 Win10(家用版) + Visual Studio 2019 + .NET Core 3.1 MVC  
 &emsp;  
 # 安裝套件  
-Install-Package Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation --version 3.1.18  
 Install-Package ZXing.Net -Version 0.16.6  
 Install-Package ZXing.Net.Bindings.ZKWeb.System.Drawing -Version 0.16.5  
 Install-Package System.Drawing.Common -Version 5.0.2  
 &emsp;  
 # 網站頁面  
 ![image](https://github.com/Jacky20200711/QRCodeScanner/blob/main/DEMO_01.PNG?raw=true)  
-# 測試教學  
+# 使用教學  
 1.開啟電腦相機的存取權限(以 Win10 為範例)  
 開始上右鍵 > 設定 > 隱私權 > 相機 > 開啟權限  
 &emsp;  
